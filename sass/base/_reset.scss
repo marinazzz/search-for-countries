@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    overflow: hidden;
+}
+
+a {
+    color: $very-dark-blue-text;
+    text-decoration: none;
+}
+
+p {
+    margin: 0;
+}
+
+img, li, ::before, ::after {
+    display: block;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    text-decoration: none;
+}

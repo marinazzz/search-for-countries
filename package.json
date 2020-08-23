@@ -1,0 +1,15 @@
+{
+  "name": "rest-countries-api",
+  "version": "1.0.0",
+  "description": "Rest countries api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "sass --watch sass/main.scss css/main.css"
+  },
+  "author": "Marina Zujic",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.26.10"
+  }
+}
