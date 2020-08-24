@@ -1,0 +1,17 @@
+header {
+    filter: grayscale(1);
+    box-shadow: 0 4px 2px -2px rgb(128 128 128 / 17%);
+
+    .nav {
+        @include display-flex;
+
+        &__heading {
+            font-size: 1.8rem;
+            font-weight: 800;
+
+            @include breakpoint-up("lg") {
+                font-size: 2.2rem;
+            }
+        }
+    }
+}

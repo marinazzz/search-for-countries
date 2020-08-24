@@ -1,0 +1,13 @@
+.grid {
+    @include breakpoint-up("sm") {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 5rem;
+        row-gap: 5rem;
+    }
+
+    @include breakpoint-up("lg") {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+}

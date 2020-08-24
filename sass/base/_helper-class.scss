@@ -1,4 +1,13 @@
 .content-centered {
-    max-width: 1200px;
+    max-width: 110rem;
     margin: 0 auto;
+    padding: $md $lg;
+
+    @include breakpoint-up("lg") {
+        padding: $xl 0;
+    }
+}
+
+.pad-xs-r {
+    padding-right: $xs;
 }

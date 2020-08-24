@@ -1,0 +1,15 @@
+//search icon
+.lnr-magnifier {
+    position: relative;
+}
+
+.lnr-magnifier::before {
+    position: absolute;
+    font-size: 1.4rem;
+    position: absolute;
+    left: 2rem;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: $dark-gray;
+    font-weight: bold;
+}

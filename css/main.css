@@ -1,11 +1,17 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 main {
   overflow: hidden;
+  background: #fafafa;
 }
 
 a {
@@ -17,8 +23,14 @@ p {
   margin: 0;
 }
 
-img, li, ::before, ::after {
+img, li {
   display: block;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 button {
@@ -26,45 +38,33 @@ button {
   border: none;
   outline: none;
   text-decoration: none;
+  font-family: inherit;
+  background: white;
+  color: #111517;
+}
+
+input {
+  margin: 0;
+  border: none;
+  font-family: inherit;
 }
 
 html {
-  font-size: 18px;
+  font-size: 62.5%;
+  font-family: "Nunito Sans", sans-serif;
 }
 
-* {
-  font-family: "Public Sans", sans-serif;
-  text-align: center;
-}
-@media (min-width: 992px) {
-  * {
-    text-align: left;
-  }
+body {
+  color: #111517;
 }
 
 h1, h2, h3, h4 {
-  color: #111517;
   margin: 0;
   font-weight: 400;
 }
 
-h1, h2 {
-  padding-bottom: 1.4rem;
-}
-
-h1 {
-  font-size: 2rem;
-  line-height: 2.5rem;
-}
-@media (min-width: 992px) {
-  h1 {
-    font-size: 3.25rem;
-    line-height: 3.75rem;
-  }
-}
-
 h2 {
-  font-size: 1.8rem;
+  font-size: 1.9rem;
   line-height: 2.3rem;
 }
 @media (min-width: 992px) {
@@ -102,60 +102,133 @@ p {
   }
 }
 
-.content-centered {
-  max-width: 1200px;
-  margin: 0 auto;
+span {
+  font-weight: normal;
 }
 
-.articles__card {
-  display: block;
-  border-radius: 0.5rem;
+.content-centered {
+  max-width: 110rem;
+  margin: 0 auto;
+  padding: 2rem 3rem;
+}
+@media (min-width: 992px) {
+  .content-centered {
+    padding: 4rem 0;
+  }
+}
+
+.pad-xs-r {
+  padding-right: 0.5rem;
+}
+
+header {
+  filter: grayscale(1);
+  box-shadow: 0 4px 2px -2px rgba(128, 128, 128, 0.17);
+}
+header .nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header .nav__heading {
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+@media (min-width: 992px) {
+  header .nav__heading {
+    font-size: 2.2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .items {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+.items__input {
+  height: 4.5rem;
+  width: 100%;
+  font-size: 1.4rem;
+  padding: 0.6rem 1.2rem 0.6rem 4rem;
+  line-height: 1.5;
+  border-radius: 0.4rem;
   background: white;
-  margin-bottom: 1.25rem;
+  outline-color: rgba(170, 161, 161, 0.439);
+  color: #858585;
+  box-shadow: 0 0.2rem 1rem 0 rgba(0, 0, 0, 0.03);
 }
 @media (min-width: 768px) {
-  .articles__card {
+  .items__input {
+    width: 40rem;
+  }
+}
+
+@media (min-width: 576px) {
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 5rem;
+    row-gap: 5rem;
+  }
+}
+@media (min-width: 992px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.lnr-magnifier {
+  position: relative;
+}
+
+.lnr-magnifier::before {
+  position: absolute;
+  font-size: 1.4rem;
+  position: absolute;
+  left: 2rem;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #858585;
+  font-weight: bold;
+}
+
+.card {
+  display: block;
+  margin-bottom: 4rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.2rem 1rem 0 rgba(0, 0, 0, 0.12);
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.card:hover {
+  transform: scale(1.05);
+}
+@media (min-width: 768px) {
+  .card {
     margin-bottom: 0;
   }
 }
-.articles__card-image {
+.card__image {
   width: auto;
 }
-.articles__card-image img {
+.card__image img {
   width: 100%;
-  height: 100%;
   border-radius: 0.5rem 0.5rem 0 0;
 }
-.articles__card-text {
-  padding: 1.4rem;
+.card__info {
+  padding: 2.5rem;
+  font-size: 1.4rem;
 }
-@media (min-width: 768px) {
-  .articles__card-text {
-    padding: 2rem;
-  }
+.card__info-heading {
+  padding-bottom: 2rem;
+  font-weight: 900;
 }
-.articles__card-text span,
-.articles__card-text h4,
-.articles__card-text p {
-  text-align: left;
-}
-.articles__card-text span,
-.articles__card-text h4 {
-  padding-bottom: 0.9rem;
-}
-@media (min-width: 768px) {
-  .articles__card-text span,
-.articles__card-text h4 {
-    padding-bottom: 0.75rem;
-  }
-}
-.articles__card-text p {
-  font-size: 0.8rem;
-}
-.articles__card-text span {
-  display: block;
-  font-size: 0.65rem;
-  color: #111517;
+.card__info-details {
+  padding-bottom: 0.5rem;
+  font-weight: 700;
 }
 
 /*# sourceMappingURL=main.css.map */
