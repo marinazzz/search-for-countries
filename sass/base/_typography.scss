@@ -9,11 +9,11 @@ body {
 
 h1, h2, h3, h4 {
     margin: 0;
-    font-weight: 400;
+    font-weight: 800;
 }
 
 h2 {
-    font-size: 1.9rem;
+    font-size: 2rem;
     line-height: 2.3rem;
 
     @include breakpoint-up("lg") {

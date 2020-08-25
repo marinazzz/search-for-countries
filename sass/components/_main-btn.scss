@@ -1,0 +1,15 @@
+.main-btn {
+    font-size: 1.4rem;
+    border-radius: 0.5rem;
+    padding: 0.5rem 2rem;
+    outline-color: $light-gray;
+    box-shadow: 0 0.2rem 1rem 0 rgb(170 161 161 / 81%);
+
+    @include breakpoint-up("sm") {
+       margin-bottom: 0.5rem;
+    }
+
+    @include breakpoint-up("lg") {
+        margin-bottom: 0;
+     }
+}

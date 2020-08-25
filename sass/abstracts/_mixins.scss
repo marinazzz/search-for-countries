@@ -15,6 +15,11 @@
     align-items: center;
 }
 
+@mixin two-col-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
 @mixin breakpoint-up($size) {
       @media (min-width: map-get($breakpoints, $size)) {
         @content;

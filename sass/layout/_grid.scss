@@ -2,8 +2,8 @@
     @include breakpoint-up("sm") {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        column-gap: 5rem;
-        row-gap: 5rem;
+        column-gap: 4rem;
+        row-gap: 4rem;
     }
 
     @include breakpoint-up("lg") {

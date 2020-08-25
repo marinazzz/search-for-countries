@@ -1,13 +1,27 @@
 .content-centered {
     max-width: 110rem;
     margin: 0 auto;
-    padding: $md $lg;
+    padding: $md $md 0 $md;
 
-    @include breakpoint-up("lg") {
-        padding: $xl 0;
+    @include breakpoint-up("sm") {
+        padding: $lg $lg 0 $lg;
     }
 }
 
 .pad-xs-r {
-    padding-right: $xs;
+    padding-right: 0.5rem;
+}
+
+.pad-md-bot {
+    padding-bottom: 2.5rem;
+
+    @include breakpoint-up("lg") {
+        padding-bottom: 0;
+    }
+}
+
+.pad-md-top {
+    @include breakpoint-up("lg") {
+        padding-top: 2rem;
+    }
 }
