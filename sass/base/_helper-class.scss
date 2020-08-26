@@ -2,10 +2,15 @@
     max-width: 110rem;
     margin: 0 auto;
     padding: $md $md 0 $md;
+    @include display-flex;
 
     @include breakpoint-up("sm") {
         padding: $lg $lg 0 $lg;
     }
+}
+
+.content-centered--block {
+    display: block;
 }
 
 .pad-xs-r {
@@ -15,13 +20,17 @@
 .pad-md-bot {
     padding-bottom: 2.5rem;
 
-    @include breakpoint-up("lg") {
+    @include breakpoint-up("sm") {
         padding-bottom: 0;
     }
 }
 
 .pad-md-top {
-    @include breakpoint-up("lg") {
+    @include breakpoint-up("md") {
         padding-top: 2rem;
     }
+}
+
+.pad-top {
+    padding-top: 2rem;
 }

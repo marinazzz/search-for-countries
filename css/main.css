@@ -110,11 +110,18 @@ span {
   max-width: 110rem;
   margin: 0 auto;
   padding: 2rem 2rem 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 @media (min-width: 630px) {
   .content-centered {
     padding: 3rem 3rem 0 3rem;
   }
+}
+
+.content-centered--block {
+  display: block;
 }
 
 .pad-xs-r {
@@ -124,16 +131,20 @@ span {
 .pad-md-bot {
   padding-bottom: 2.5rem;
 }
-@media (min-width: 992px) {
+@media (min-width: 630px) {
   .pad-md-bot {
     padding-bottom: 0;
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .pad-md-top {
     padding-top: 2rem;
   }
+}
+
+.pad-top {
+  padding-top: 2rem;
 }
 
 header {
@@ -147,29 +158,8 @@ header {
     padding-bottom: 3rem;
   }
 }
-header .nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-header .nav__heading {
-  font-size: 1.8rem;
-  font-weight: 800;
-}
-@media (min-width: 992px) {
-  header .nav__heading {
-    font-size: 2.2rem;
-  }
-}
 
-@media (min-width: 768px) {
-  .items {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-}
-.items__input {
+.search-input {
   height: 4.5rem;
   width: 100%;
   font-size: 1.4rem;
@@ -182,7 +172,7 @@ header .nav__heading {
   box-shadow: 0 0.2rem 1rem 0 rgba(0, 0, 0, 0.03);
 }
 @media (min-width: 768px) {
-  .items__input {
+  .search-input {
     width: 40rem;
   }
 }
@@ -201,42 +191,37 @@ header .nav__heading {
   }
 }
 
-.content {
-  padding-top: 2.5rem;
-}
-@media (min-width: 630px) {
-  .content {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 4rem;
-    align-items: center;
-  }
-}
 @media (min-width: 992px) {
-  .content__info {
-    display: grid;
+  .grid--xl-gap {
     grid-template-columns: repeat(2, 1fr);
     column-gap: 10rem;
   }
 }
-.content__info-btns {
+@media (min-width: 768px) {
+  .grid--xl-gap {
+    column-gap: 5rem;
+  }
+}
+.grid--xl-gap .btn-row {
   padding-top: 1.2rem;
 }
 @media (min-width: 992px) {
-  .content__info-btns {
+  .grid--xl-gap .btn-row {
     display: inline;
     padding-top: 0;
   }
 }
-.content .card__info-details {
+
+.card__info-details {
   padding-bottom: 0.9rem;
 }
 @media (min-width: 992px) {
-  .content .card__info-details--no-pad {
+  .card__info-details--no-pad {
     padding-bottom: 0;
   }
 }
-.content .card__image img {
+
+.card__image img {
   border-radius: 0;
 }
 
@@ -294,7 +279,6 @@ header .nav__heading {
 .card__info-details {
   padding-bottom: 0.5rem;
   font-weight: 700;
-  font-size: 1.4rem;
 }
 
 .main-btn {

@@ -12,24 +12,26 @@
 
 <body>
     <header>
-        <nav class="nav content-centered">
-            <div class="nav__heading">Where in the world?</div>
-            <div class="nav__dark-mode">
-                <button class="nav__dark-mode-btn">
+        <div class="content-centered">
+            <h1>Where in the world?</h1>
+            <div class="dark-mode">
+                <button class="dark-mode__btn">
                     <span class="lnr lnr-moon pad-xs-r"></span>
                     Dark Mode</button>
             </div>
-        </nav>
+        </div>
     </header>
     <main>
-        <div class="items content-centered">
-            <div class="items__search">
+        <div class="content-centered">
+            <div>
                 <span class="lnr lnr-magnifier"></span>
-                <input class="items__input" type="search" placeholder="Search for a country..." aria-label="Search" />
+                <input class="search-input" type="search" placeholder="Search for a country..." aria-label="Search" />
             </div>
-            <div class="items__select">
-
-            </div>
+            <select id="slim-select">
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+            </select>
         </div>
         <div class="grid content-centered">
             <a class="card" href="details.html">
@@ -186,7 +188,9 @@
             </div>
         </div>
     </main>
+    <script src="node_modules/slim-select/dist/slimselect.min.js"></script>
     <script src="js/app.js"></script>
+
 </body>
 
 </html>

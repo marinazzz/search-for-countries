@@ -1,19 +1,15 @@
-.content {
-    padding-top: 2.5rem;
 
-    @include breakpoint-up("sm") {
-        @include two-col-grid;
-        column-gap: 4rem;
-        align-items: center;
-    }
-
-   &__info {
+   .grid--xl-gap {
         @include breakpoint-up("lg") {
-            @include two-col-grid;
+            grid-template-columns: repeat(2, 1fr);
             column-gap: 10rem;
         }
 
-        &-btns {
+        @include breakpoint-up("md") {
+            column-gap: 5rem;
+        }
+
+    .btn-row {
             padding-top: 1.2rem;
 
             @include breakpoint-up("lg") {
@@ -38,4 +34,3 @@
             border-radius: 0;
         }
     }
-}

@@ -11,5 +11,8 @@
   "license": "ISC",
   "devDependencies": {
     "sass": "^1.26.10"
+  },
+  "dependencies": {
+    "slim-select": "^1.26.0"
   }
 }

@@ -1,23 +1,16 @@
-.items {
+.search-input {
+    height: 4.5rem;
+    width: 100%;
+    font-size: 1.4rem;
+    padding: 0.6rem 1.2rem 0.6rem 4rem;
+    line-height: 1.5;
+    border-radius: 0.4rem;
+    background: white;
+    outline-color: $light-gray;
+    color: $dark-gray;
+    box-shadow: 0 0.2rem 1rem 0 rgba(0, 0, 0, 0.03);
 
     @include breakpoint-up("md") {
-        @include display-flex;
-    }
-
-    &__input {
-        height: 4.5rem;
-        width: 100%;
-        font-size: 1.4rem;
-        padding: 0.6rem 1.2rem 0.6rem 4rem;
-        line-height: 1.5;
-        border-radius: 0.4rem;
-        background: white;
-        outline-color: $light-gray;
-        color: $dark-gray;
-        box-shadow: 0 0.2rem 1rem 0 rgba(0, 0, 0, 0.03);
-
-        @include breakpoint-up("md") {
-            width: 40rem;
-        }
+        width: 40rem;
     }
 }
