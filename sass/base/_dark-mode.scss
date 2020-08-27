@@ -1,0 +1,30 @@
+body.dark-mode {
+    background: $very-dark-blue;
+    color: $white;
+}
+
+body.dark-mode header,
+body.dark-mode .search-input,
+body.dark-mode .lnr-magnifier::before,
+body.dark-mode select,
+body.dark-mode button,
+body.dark-mode a,
+body.dark-mode .card__info {
+    background: $dark-blue;
+    color: $white;
+}
+
+body.dark-mode .search-input,
+body.dark-mode header,
+body.dark-mode button,
+body.dark-mode img {
+    box-shadow: 0 0.2rem 1rem 0 #151d25;
+}
+
+body.dark-mode header {
+    filter: none;
+}
+
+body.dark-mode button.dark-mode__btn {
+    box-shadow: none;
+}

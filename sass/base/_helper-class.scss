@@ -20,7 +20,7 @@
 .pad-md-bot {
     padding-bottom: 2.5rem;
 
-    @include breakpoint-up("sm") {
+    @include breakpoint-up("md") {
         padding-bottom: 0;
     }
 }
@@ -32,5 +32,5 @@
 }
 
 .pad-top {
-    padding-top: 2rem;
+    padding-top: 3rem;
 }

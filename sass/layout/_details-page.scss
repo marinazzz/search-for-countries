@@ -3,10 +3,11 @@
         @include breakpoint-up("lg") {
             grid-template-columns: repeat(2, 1fr);
             column-gap: 10rem;
+            align-items: center;
         }
 
         @include breakpoint-up("md") {
-            column-gap: 5rem;
+            column-gap: 8rem;
         }
 
     .btn-row {
@@ -15,12 +16,14 @@
             @include breakpoint-up("lg") {
                 display: inline;
                 padding-top: 0;
+                padding-left: 1rem;
             }
         }
     }
 
     .card__info-details {
         padding-bottom: 0.9rem;
+        font-size: 1.4rem;
 
         &--no-pad {
             @include breakpoint-up("lg") {
@@ -30,7 +33,7 @@
     }
 
     .card__image {
-        img {
+        img.card__image--no-border {
             border-radius: 0;
         }
     }

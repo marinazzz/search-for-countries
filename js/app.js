@@ -10,3 +10,8 @@
 //     ]
 // })
 
+const darkModeBtn = document.querySelector('.dark-mode__btn');
+
+darkModeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+});
