@@ -186,6 +186,7 @@ header {
     grid-template-columns: repeat(2, 1fr);
     column-gap: 4rem;
     row-gap: 4rem;
+    align-items: stretch;
   }
 }
 @media (min-width: 992px) {
@@ -251,7 +252,8 @@ header {
 }
 
 .card {
-  display: block;
+  display: flex;
+  flex-direction: column;
   margin-bottom: 4rem;
   border-radius: 0.5rem;
   box-shadow: 0 0.2rem 1rem 0 rgba(0, 0, 0, 0.12);
@@ -269,6 +271,7 @@ header {
 }
 .card__image {
   width: auto;
+  flex: 1 1 auto;
 }
 .card__image img {
   width: 100%;

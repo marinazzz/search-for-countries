@@ -15,3 +15,46 @@ const darkModeBtn = document.querySelector('.dark-mode__btn');
 darkModeBtn.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
 });
+
+async function getCountry() {
+    let response = await fetch('https://restcountries.eu/rest/v2/region/europe');
+    let country = await response.json();
+    let card = '';
+    country.forEach(function(country) {
+        card += `
+        <a class="card" href="details.html">
+            <div class="card__image">
+                <img src="${country.flag}" alt="Germany flag" />
+            </div>
+            <div class="card__info">
+                <h2 class="card__info-heading">${country.name}</h2>
+                <ul>
+                    <li class="card__info-details">Population:
+                        <span>${country.population}</span>
+                    </li>
+                    <li class="card__info-details">Region:
+                        <span>${country.region}</span>
+                    </li>
+                    <li class="card__info-details">Capital:
+                        <span>${country.capital}</span>
+                    </li>
+                </ul>
+            </div>
+        </a>`
+    });
+    document.getElementById('output').innerHTML = card;
+}
+
+getCountry();
+
+
+// .catch(function (err) {
+    //     // There was an error
+    //     console.warn('Something went wrong.', err);
+    // });
+
+
+// const searchCountry = document.getElementById('searchCountry');
+// searchCountry.addEventListener('keyup', function (e) {
+
+// })

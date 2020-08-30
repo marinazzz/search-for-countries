@@ -4,6 +4,7 @@
         grid-template-columns: repeat(2, 1fr);
         column-gap: 4rem;
         row-gap: 4rem;
+        align-items: stretch;
     }
 
     @include breakpoint-up("lg") {
