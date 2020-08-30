@@ -1,27 +1,44 @@
-// let select = new SlimSelect({
-//     select: '#slim-select',
-//     showSearch: false,
-//     placeholder: 'Filter by Region',
+let select = new SlimSelect({
+  select: '#slim-select',
+  showSearch: false,
+  placeholder: 'Filter by Region',
+  // data: [
+  //   { text: 'Value 1' },
+  //   { text: 'Value 2' },
+  //   { text: 'Value 3' }
+  // ]
+})
 
-//     data: [
-//         { text: 'Value 1' },
-//         { text: 'Value 2' },
-//         { text: 'Value 3' }
-//     ]
-// })
+// Dark mode presistence implementation example
+// (() => {
+//   const darkModeStatus = Number(localStorage.getItem('darkMode'));
+//   darkModeStatus === 1 ?
+//     document.body.classList.add('dark-mode') :
+//     document.body.classList.remove('dark-mode');
+// })()
 
 const darkModeBtn = document.querySelector('.dark-mode__btn');
 
 darkModeBtn.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
+
+  document.body.classList.toggle('dark-mode');
+  if (document.body.classList.contains('dark-mode')) {
+    localStorage.setItem('darkMode', '1');
+  } else {
+    localStorage.removeItem('darkMode');
+  }
 });
 
-async function getCountry() {
-    let response = await fetch('https://restcountries.eu/rest/v2/region/europe');
-    let country = await response.json();
-    let card = '';
-    country.forEach(function(country) {
-        card += `
+// error handling needs to be implemented
+async function getCountries() {
+  const response = await fetch('https://restcountries.eu/rest/v2/region/europe');
+  return response.json();
+}
+
+function renderCountries(countriesList) {
+  let card = '';
+  countriesList.forEach((country) => {
+    card += `
         <a class="card" href="details.html">
             <div class="card__image">
                 <img src="${country.flag}" alt="Germany flag" />
@@ -41,11 +58,15 @@ async function getCountry() {
                 </ul>
             </div>
         </a>`
-    });
-    document.getElementById('output').innerHTML = card;
+  });
+  document.getElementById('output').innerHTML = card;
 }
 
-getCountry();
+getCountries().then(data => {
+  renderCountries(data);
+})
+
+// getCountry();
 
 
 // .catch(function (err) {
