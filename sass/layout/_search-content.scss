@@ -8,7 +8,7 @@
     background: white;
     outline-color: $light-gray;
     color: $dark-gray;
-    box-shadow: 0 0.2rem 1rem 0 rgba(0, 0, 0, 0.03);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgb(0 0 0 / 34%);
 
     @include breakpoint-up("md") {
         width: 40rem;

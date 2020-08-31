@@ -1,0 +1,50 @@
+$height: 45px;
+$white: #ffffff !default;
+$font-color: $dark-gray;
+$font-placeholder-color: $dark-gray;
+$font-disabled-color: #dedede !default;
+$border-color: #dcdee2 !default;
+$border-radius: 4px !default;
+$spacing-xl: 20px;
+$spacing-l: 8px !default;
+$spacing-m: 6px !default;
+$spacing-s: 4px !default;
+
+
+.ss-main {
+    color: $font-color;
+    font-size: 1.4rem;
+    width: auto;
+    padding-top: 2rem;
+    border-radius: 0.4rem;
+
+    @include breakpoint-up("sm") {
+        padding-top: 0;
+    }
+
+    .ss-single-selected {
+        width: auto;
+        height: $height;
+        padding: $spacing-m $spacing-xl $spacing-m $spacing-xl;
+        border: none;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgb(0 0 0 / 34%);
+    }
+
+    .ss-single-selected .ss-arrow {
+        margin: 0 0 0 20px;
+    }
+
+    .ss-content {
+        border: none;
+
+        & .ss-list .ss-option.ss-disabled {
+            display: none;
+        }
+        &.ss-open {
+            border-radius: 0.4rem;
+            margin-top: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgb(0 0 0 / 34%);
+        }
+    }
+
+}

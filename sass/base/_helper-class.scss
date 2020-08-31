@@ -5,12 +5,20 @@
     @include display-flex;
 
     @include breakpoint-up("sm") {
-        padding: $lg $lg 0 $lg;
+        padding: 3rem $lg 0 $lg;
     }
 }
 
 .content-centered--block {
     display: block;
+}
+
+.display-block {
+    display: block;
+
+    @include breakpoint-up("sm") {
+        display: flex;
+    }
 }
 
 .pad-xs-r {
@@ -27,7 +35,7 @@
 
 .pad-md-top {
     @include breakpoint-up("md") {
-        padding-top: 2rem;
+        padding-top: 3rem;
     }
 }
 

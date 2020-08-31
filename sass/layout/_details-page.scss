@@ -1,39 +1,34 @@
+.grid--xl-gap {
+    @include breakpoint-up("lg") {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 10rem;
+    }
 
-   .grid--xl-gap {
+    @include breakpoint-up("md") {
+        column-gap: 8rem;
+    }
+
+    .links-row {
+        padding-top: 1.2rem;
+        @include display-flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+}
+
+.card__info-details {
+    padding-bottom: 0.9rem;
+    font-size: 1.4rem;
+
+    &--no-pad {
         @include breakpoint-up("lg") {
-            grid-template-columns: repeat(2, 1fr);
-            column-gap: 10rem;
-            align-items: center;
-        }
-
-        @include breakpoint-up("md") {
-            column-gap: 8rem;
-        }
-
-    .btn-row {
-            padding-top: 1.2rem;
-
-            @include breakpoint-up("lg") {
-                display: inline;
-                padding-top: 0;
-                padding-left: 1rem;
-            }
+            padding-bottom: 0;
         }
     }
+}
 
-    .card__info-details {
-        padding-bottom: 0.9rem;
-        font-size: 1.4rem;
-
-        &--no-pad {
-            @include breakpoint-up("lg") {
-                padding-bottom: 0;
-            }
-        }
+.card__image {
+    img.card__image--no-border {
+        border-radius: 0;
     }
-
-    .card__image {
-        img.card__image--no-border {
-            border-radius: 0;
-        }
-    }
+}

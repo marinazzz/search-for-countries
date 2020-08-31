@@ -1,9 +1,7 @@
 header {
     background: $white;
     padding-bottom: 2rem;
-    filter: grayscale(1);
-    box-shadow: 0 4px 2px -2px rgb(128 128 128 / 17%);
-
+    box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.06), 0 0.1rem 0.2rem rgba(0, 0, 0, 0.12);
 
     @include breakpoint-up("sm") {
         padding-bottom: 3rem;
