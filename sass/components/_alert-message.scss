@@ -1,0 +1,28 @@
+.alert {
+    position: fixed;
+    @include all-centered;
+    z-index: 1;
+    min-width: 30rem;
+    border-radius: 0.25rem;
+    box-shadow: 0.0625rem 0.0625rem 0.875rem 0rem #292626c9;
+    overflow: hidden;
+    text-align: center;
+    background: white;
+
+    &__header {
+        font-size: 3rem;
+        background: coral;
+        color: white;
+    }
+
+    &__body {
+        font-size: 1.8rem;
+        padding: 1rem;
+    }
+
+    &__footer {
+        min-height: 2rem;
+        background: coral;
+
+    }
+}

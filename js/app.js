@@ -14,3 +14,4 @@ darkModeBtn.addEventListener('click', () => {
     localStorage.setItem('darkMode', '1') :
     localStorage.removeItem('darkMode');
 });
+

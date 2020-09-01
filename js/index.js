@@ -3,7 +3,6 @@ let select = new SlimSelect({
     showSearch: false,
 })
 
-// error handling needs to be implemented
 async function getCountries() {
     const response = await fetch('https://restcountries.eu/rest/v2/region/europe');
     return response.json();
@@ -39,10 +38,24 @@ function renderCountries(countriesList) {
 getCountries().then(data => {
     renderCountries(data);
 })
-// .catch(function (err) {
-//     // There was an error
-//     console.warn('Something went wrong.', err);
-// });
+    .catch(() =>
+        showError()
+    );
+
+function showError() {
+    let div = document.createElement('div');
+    div.innerHTML = `
+    <div class="alert" role="alert">
+     <div class="alert__header">&#9888;</div>
+     <div class="alert__body">
+       <h4><strong>Warning!</strong></h4>
+        An error has occured, please try again.
+     </div>
+     <div class="alert__footer"></div>
+    </div>
+  `;
+    document.body.append(div);
+}
 
 
 const searchCountry = document.getElementById('searchCountry');
