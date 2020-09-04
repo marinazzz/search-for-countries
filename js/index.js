@@ -4,7 +4,7 @@ let select = new SlimSelect({
 })
 
 async function getCountries() {
-    const response = await fetch('https://restcountries.eu/rest/v2/region/europe');
+    const response = await fetch('https://restcountttttries.eu/rest/v2/region/europe');
     return response.json();
 }
 
@@ -35,12 +35,11 @@ function renderCountries(countriesList) {
     document.getElementById('output').innerHTML = card;
 }
 
-getCountries().then(data => {
+getCountries()
+.then(data => {
     renderCountries(data);
 })
-    .catch(() =>
-        showError()
-    );
+.catch(showError);
 
 function showError() {
     let div = document.createElement('div');
@@ -48,8 +47,8 @@ function showError() {
     <div class="alert" role="alert">
      <div class="alert__header">&#9888;</div>
      <div class="alert__body">
-       <h4><strong>Warning!</strong></h4>
-        An error has occured, please try again.
+       <h3 class="alert__body-heading"><strong>Warning!</strong></h3>
+        An error has occured, please reload the web page and try again.
      </div>
      <div class="alert__footer"></div>
     </div>
