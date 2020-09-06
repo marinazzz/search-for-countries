@@ -1,8 +1,12 @@
 ## Search for countries
 
-> Search and get information about countries
+> Two page app to search and get information about countries
 
-> Vanilla Javascript, SASS
+> Built with Vanilla Javascript and SASS
+
+> Responsive layout using grid and flexbox
+
+> Toggle the color scheme between light and dark mode
 
 > Design by Frontend Mentor
 
