@@ -306,7 +306,7 @@ header {
 .ss-main {
   color: #858585;
   font-size: 1.4rem;
-  width: auto;
+  max-width: 20rem;
   padding-top: 2rem;
   border-radius: 0.4rem;
 }

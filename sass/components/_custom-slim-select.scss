@@ -14,7 +14,7 @@ $spacing-s: 4px !default;
 .ss-main {
     color: $font-color;
     font-size: 1.4rem;
-    width: auto;
+    max-width: 20rem;
     padding-top: 2rem;
     border-radius: 0.4rem;
 

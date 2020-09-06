@@ -4,7 +4,7 @@ let select = new SlimSelect({
 })
 
 async function getCountries() {
-    const response = await fetch('https://restcountttttries.eu/rest/v2/region/europe');
+    const response = await fetch('https://restcountries.eu/rest/v2/region/europe');
     return response.json();
 }
 
