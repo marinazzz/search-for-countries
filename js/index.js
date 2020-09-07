@@ -1,18 +1,22 @@
 let select = new SlimSelect({
-    select: '#slim-select',
-    showSearch: false,
-})
+  select: "#slim-select",
+  showSearch: false,
+});
+
+let countriesData = [];
 
 async function getCountries() {
-    const response = await fetch('https://restcountttttries.eu/rest/v2/region/europe');
-    return response.json();
+  const response = await fetch(
+    "https://restcountries.eu/rest/v2/region/europe"
+  );
+  return response.json();
 }
 
 function renderCountries(countriesList) {
-    let card = '';
-    countriesList.forEach((country) => {
-        card += `
-          <a class="card" href="details.html">
+  let card = "";
+  countriesList.forEach((country) => {
+    card += `
+          <a class="card" href="#" data-country-code="${country.alpha3Code}">
               <div class="card__image">
                   <img src="${country.flag}" alt="${country.name} flag" />
               </div>
@@ -30,20 +34,31 @@ function renderCountries(countriesList) {
                       </li>
                   </ul>
               </div>
-          </a>`
-    });
-    document.getElementById('output').innerHTML = card;
+          </a>`;
+  });
+  document.getElementById("output").innerHTML = card;
 }
 
 getCountries()
-.then(data => {
-    renderCountries(data);
-})
-.catch(showError);
+  .then((data) => {
+    countriesData = data;
+    renderCountries(countriesData);
+    countriesNodes = Array.from(document.getElementsByClassName("card"));
+    countriesNodes.forEach((cardNode) => {
+      cardNode.addEventListener("click", (event) => {
+        event.preventDefault();
+        localStorage.setItem(
+          "countryID",
+          cardNode.getAttribute("data-country-code")
+        );
+      });
+    });
+  })
+  .catch(showError);
 
 function showError() {
-    let div = document.createElement('div');
-    div.innerHTML = `
+  let div = document.createElement("div");
+  div.innerHTML = `
     <div class="alert" role="alert">
      <div class="alert__header">&#9888;</div>
      <div class="alert__body">
@@ -53,21 +68,29 @@ function showError() {
      <div class="alert__footer"></div>
     </div>
   `;
-    document.body.append(div);
+  document.body.append(div);
 }
 
+const debounce = (func, delay) => {
+  let inDebounce;
+  return function () {
+    const context = this;
+    const args = arguments;
+    clearTimeout(inDebounce);
+    inDebounce = setTimeout(() => func.apply(context, args), delay);
+  };
+};
 
-const searchCountry = document.getElementById('searchCountry');
-searchCountry.addEventListener('keyup', filterCountry);
-
-const countries = document.querySelectorAll('.card');
+const searchCountry = document.getElementById("searchCountry");
+searchCountry.addEventListener("keyup", debounce(filterCountry, 300));
 
 function filterCountry() {
-    const countryNames = document.querySelectorAll('.card__info-heading');
+  const countryNames = document.querySelectorAll(".card__info-heading");
 
-    countryNames.forEach((name) => {
-        name.textContent.toLowerCase().includes(searchCountry.value.toLowerCase()) ?
-            name.parentElement.parentElement.style.display = 'block' :
-            name.parentElement.parentElement.style.display = 'none';
-    })
+  const results = countriesData.filter((country) => {
+    return country.name
+      .toLowerCase()
+      .includes(searchCountry.value.toLowerCase());
+  });
+  renderCountries(results);
 }
