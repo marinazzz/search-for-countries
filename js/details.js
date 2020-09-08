@@ -1,7 +1,18 @@
+const countryID = localStorage.getItem("countryId");
+if (countryID) {
+  getCountryDetails();
+} else {
+}
+
+/* TODO: implement country detais fetching using the
+   https://restcountries.eu/#api-endpoints-name end point
+*/
+getCountryDetails();
+
 function renderCountryDetails(countryList) {
-    let grid = '';
-    countryList.forEach((country) => {
-        grid += `
+  let grid = "";
+  countryList.forEach((country) => {
+    grid += `
         <div class="card__image pad-md-bot">
         <img src="${country.flag}" alt="${country.name} flag" />
         </div>
@@ -30,10 +41,14 @@ function renderCountryDetails(countryList) {
                 <span>${country.topLevelDomain}</span>
               </li>
               <li class="card__info-details">Currencies:
-                <span>${country.currencies.map(currency => currency.name)}</span>
+                <span>${country.currencies.map(
+                  (currency) => currency.name
+                )}</span>
               </li>
               <li class="card__info-details">Language:
-                <span>${country.languages.map(language => language.name)}</span>
+                <span>${country.languages.map(
+                  (language) => language.name
+                )}</span>
               </li>
             </ul>
           </div>
@@ -50,11 +65,11 @@ function renderCountryDetails(countryList) {
             </div>
           </div>
         </div>
-        `
-    });
-    document.getElementById('countryDetails').innerHTML = grid;
+        `;
+  });
+  document.getElementById("countryDetails").innerHTML = grid;
 }
 
-getCountries().then(data => {
-    renderCountryDetails(data);
-})
+getCountries().then((data) => {
+  renderCountryDetails(data);
+});
