@@ -1,13 +1,24 @@
-const countryID = localStorage.getItem("countryId");
+//const countryID = localStorage.getItem("countryID");
+const countryID = localStorage.getItem("countryID");
 if (countryID) {
-  getCountryDetails();
+  getCountryDetails()
+  .then((countryID) => {
+    renderCountryDetails(countryID);
+  });
 } else {
+  console.log('Something wrong');
 }
 
 /* TODO: implement country detais fetching using the
    https://restcountries.eu/#api-endpoints-name end point
 */
-getCountryDetails();
+
+async function getCountryDetails() {
+  const response = await fetch(
+    "https://restcountries.eu/rest/v2/all?fullText=true"
+  );
+  return response.json();
+}
 
 function renderCountryDetails(countryList) {
   let grid = "";
@@ -70,6 +81,4 @@ function renderCountryDetails(countryList) {
   document.getElementById("countryDetails").innerHTML = grid;
 }
 
-getCountries().then((data) => {
-  renderCountryDetails(data);
-});
+

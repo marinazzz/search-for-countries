@@ -7,7 +7,7 @@ let countriesData = [];
 
 async function getCountries() {
   const response = await fetch(
-    "https://restcountries.eu/rest/v2/region/europe"
+    "https://restcountries.eu/rest/v2/all?fields=name;capital;alpha3Code;flag;population;region"
   );
   return response.json();
 }
@@ -16,7 +16,7 @@ function renderCountries(countriesList) {
   let card = "";
   countriesList.forEach((country) => {
     card += `
-          <a class="card" href="#" data-country-code="${country.alpha3Code}">
+          <a class="card" data-country-code="${country.alpha3Code}">
               <div class="card__image">
                   <img src="${country.flag}" alt="${country.name} flag" />
               </div>
@@ -43,15 +43,17 @@ getCountries()
   .then((data) => {
     countriesData = data;
     renderCountries(countriesData);
-    countriesNodes = Array.from(document.getElementsByClassName("card"));
+    //countriesNodes = Array.from(document.getElementsByClassName("card"));
+    countriesNodes = [...document.querySelectorAll('.card')];
     countriesNodes.forEach((cardNode) => {
       cardNode.addEventListener("click", (event) => {
         event.preventDefault();
         localStorage.setItem(
           "countryID",
           cardNode.getAttribute("data-country-code")
-        );
-      });
+          );
+          location.assign('../details.html');
+        });
     });
   })
   .catch(showError);
@@ -93,4 +95,19 @@ function filterCountry() {
       .includes(searchCountry.value.toLowerCase());
   });
   renderCountries(results);
+}
+
+const regionList = [...document.querySelectorAll('.ss-option')];
+
+regionList.forEach(region => {
+    region.addEventListener('click', () => {
+      filterByRegion(region.textContent)
+    })
+  })
+
+function filterByRegion(item) {
+  const regions = countriesData.filter((country) => {
+    return country.region.includes(item);
+  });
+  renderCountries(regions);
 }
