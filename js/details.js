@@ -1,5 +1,5 @@
-//const countryID = localStorage.getItem("countryID");
 const countryID = localStorage.getItem("countryID");
+
 if (countryID) {
   getCountryDetails()
   .then((countryID) => {

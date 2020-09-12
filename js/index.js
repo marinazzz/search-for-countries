@@ -1,6 +1,10 @@
 let select = new SlimSelect({
   select: "#slim-select",
   showSearch: false,
+  placeholder: 'Filter by Region',
+  onChange: (e) => {
+    filterByRegion(e.value)
+  }
 });
 
 let countriesData = [];
@@ -16,7 +20,7 @@ function renderCountries(countriesList) {
   let card = "";
   countriesList.forEach((country) => {
     card += `
-          <a class="card" data-country-code="${country.alpha3Code}">
+          <a href="../details.html" class="card" data-country-code="${country.alpha3Code}">
               <div class="card__image">
                   <img src="${country.flag}" alt="${country.name} flag" />
               </div>
@@ -43,20 +47,25 @@ getCountries()
   .then((data) => {
     countriesData = data;
     renderCountries(countriesData);
-    //countriesNodes = Array.from(document.getElementsByClassName("card"));
     countriesNodes = [...document.querySelectorAll('.card')];
     countriesNodes.forEach((cardNode) => {
       cardNode.addEventListener("click", (event) => {
         event.preventDefault();
         localStorage.setItem(
           "countryID",
-          cardNode.getAttribute("data-country-code")
-          );
-          location.assign('../details.html');
-        });
+          cardNode.getAttribute("data-country-code"));
+        redirectUrl();
+      });
     });
   })
   .catch(showError);
+
+function redirectUrl() {
+  const card = document.querySelector('.card');
+  if (card.classList.contains('card')) {
+    location.assign('../details.html')
+  }
+}
 
 function showError() {
   let div = document.createElement("div");
@@ -84,11 +93,9 @@ const debounce = (func, delay) => {
 };
 
 const searchCountry = document.getElementById("searchCountry");
-searchCountry.addEventListener("keyup", debounce(filterCountry, 300));
+searchCountry.addEventListener('keyup', debounce(filterCountry, 300));
 
 function filterCountry() {
-  const countryNames = document.querySelectorAll(".card__info-heading");
-
   const results = countriesData.filter((country) => {
     return country.name
       .toLowerCase()
@@ -97,17 +104,9 @@ function filterCountry() {
   renderCountries(results);
 }
 
-const regionList = [...document.querySelectorAll('.ss-option')];
-
-regionList.forEach(region => {
-    region.addEventListener('click', () => {
-      filterByRegion(region.textContent)
-    })
-  })
-
-function filterByRegion(item) {
+function filterByRegion(name) {
   const regions = countriesData.filter((country) => {
-    return country.region.includes(item);
+    return country.region.includes(name);
   });
   renderCountries(regions);
 }
