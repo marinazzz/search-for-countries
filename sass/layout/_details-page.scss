@@ -27,8 +27,7 @@
     }
 }
 
-.card__image {
-    img.card__image--no-border {
-        border-radius: 0;
-    }
-}
+.card__flag {
+    width: 100%;
+    box-shadow: 0px 2px 2px 0px rgba(128, 128, 128, 0.17);
+  }

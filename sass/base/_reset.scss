@@ -49,3 +49,15 @@ input {
     border: none;
     font-family: inherit;
 }
+
+dd, dt {
+    display: inline;
+}
+
+dl, dd, dt {
+    margin: 0;
+}
+
+dt, li {
+    font-weight: 700;
+}

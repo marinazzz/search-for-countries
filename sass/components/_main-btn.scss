@@ -2,14 +2,6 @@
     font-size: 1.4rem;
     border-radius: 0.5rem;
     padding: 0.5rem 2rem;
-    margin-right: 1rem;
+    margin: 0 1rem 1rem 0;
     box-shadow: 0 1px 4px 0 rgba(170, 161, 161, 0.81);
-
-    @include breakpoint-up("sm") {
-       margin-bottom: 0.5rem;
-    }
-
-    @include breakpoint-up("lg") {
-        margin-bottom: 0;
-     }
 }
