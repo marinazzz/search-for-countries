@@ -1,10 +1,10 @@
 let select = new SlimSelect({
   select: "#slim-select",
   showSearch: false,
-  placeholder: 'Filter by Region',
+  placeholder: "Filter by Region",
   onChange: (e) => {
-    filterByRegion(e.value)
-  }
+    filterByRegion(e.value);
+  },
 });
 
 let countriesData = [];
@@ -47,25 +47,19 @@ getCountries()
   .then((data) => {
     countriesData = data;
     renderCountries(countriesData);
-    countriesNodes = [...document.querySelectorAll('.card')];
+    countriesNodes = [...document.querySelectorAll(".card")];
     countriesNodes.forEach((cardNode) => {
       cardNode.addEventListener("click", (event) => {
         event.preventDefault();
         localStorage.setItem(
           "countryID",
-          cardNode.getAttribute("data-country-code"));
-        redirectUrl();
+          cardNode.getAttribute("data-country-code")
+        );
+        window.location.assign("details.html");
       });
     });
   })
   .catch(showError);
-
-function redirectUrl() {
-  const card = document.querySelector('.card');
-  if (card.classList.contains('card')) {
-    location.assign('../details.html')
-  }
-}
 
 function showError() {
   let div = document.createElement("div");
@@ -93,7 +87,7 @@ const debounce = (func, delay) => {
 };
 
 const searchCountry = document.getElementById("searchCountry");
-searchCountry.addEventListener('keyup', debounce(filterCountry, 300));
+searchCountry.addEventListener("keyup", debounce(filterCountry, 300));
 
 function filterCountry() {
   const results = countriesData.filter((country) => {
