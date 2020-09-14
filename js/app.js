@@ -15,3 +15,17 @@ darkModeBtn.addEventListener('click', () => {
     localStorage.removeItem('darkMode');
 });
 
+function showError() {
+  let div = document.createElement("div");
+  div.innerHTML = `
+    <div class="alert" role="alert">
+     <div class="alert__header">&#9888;</div>
+     <div class="alert__body">
+       <h3 class="alert__body-heading"><strong>Warning!</strong></h3>
+        An error has occured, please reload the web page and try again.
+     </div>
+     <div class="alert__footer"></div>
+    </div>
+  `;
+  document.body.append(div);
+}

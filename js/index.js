@@ -3,8 +3,9 @@ let select = new SlimSelect({
   showSearch: false,
   placeholder: "Filter by Region",
   onChange: (e) => {
-    filterByRegion(e.value);
+    filterByRegion(e.value)
   },
+  allowDeselect: true
 });
 
 let countriesData = [];
@@ -20,7 +21,7 @@ function renderCountries(countriesList) {
   let card = "";
   countriesList.forEach((country) => {
     card += `
-          <a href="../details.html" class="card" data-country-code="${country.alpha3Code}">
+          <a href="details.html" class="card" data-country-code="${country.alpha3Code}">
               <div class="card__image">
                   <img src="${country.flag}" alt="${country.name} flag" />
               </div>
@@ -47,35 +48,23 @@ getCountries()
   .then((data) => {
     countriesData = data;
     renderCountries(countriesData);
-    countriesNodes = [...document.querySelectorAll(".card")];
+    saveToLocalStorage();
+  })
+  .catch(showError);
+
+function saveToLocalStorage() {
+let countriesNodes = [...document.querySelectorAll(".card")];
     countriesNodes.forEach((cardNode) => {
       cardNode.addEventListener("click", (event) => {
         event.preventDefault();
         localStorage.setItem(
           "countryID",
-          cardNode.getAttribute("data-country-code")
+          cardNode.dataset.countryCode
         );
         window.location.assign("details.html");
       });
     });
-  })
-  .catch(showError);
-
-function showError() {
-  let div = document.createElement("div");
-  div.innerHTML = `
-    <div class="alert" role="alert">
-     <div class="alert__header">&#9888;</div>
-     <div class="alert__body">
-       <h3 class="alert__body-heading"><strong>Warning!</strong></h3>
-        An error has occured, please reload the web page and try again.
-     </div>
-     <div class="alert__footer"></div>
-    </div>
-  `;
-  document.body.append(div);
 }
-
 const debounce = (func, delay) => {
   let inDebounce;
   return function () {
@@ -86,21 +75,31 @@ const debounce = (func, delay) => {
   };
 };
 
-const searchCountry = document.getElementById("searchCountry");
-searchCountry.addEventListener("keyup", debounce(filterCountry, 300));
+let search = document.getElementById("search");
+search.addEventListener("keyup", debounce(searchCountry, 300));
 
-function filterCountry() {
-  const results = countriesData.filter((country) => {
-    return country.name
-      .toLowerCase()
-      .includes(searchCountry.value.toLowerCase());
-  });
-  renderCountries(results);
+function searchCountry() {
+  filteredCountry ?
+    filterData(filteredCountry) :
+    filterData(countriesData);
 }
 
+function filterData(data) {
+  const results = data.filter((value) => {
+    return value.name
+      .toLowerCase()
+      .includes(search.value.toLowerCase());
+  });
+  renderCountries(results);
+  saveToLocalStorage();
+}
+
+let filteredCountry = '';
 function filterByRegion(name) {
   const regions = countriesData.filter((country) => {
     return country.region.includes(name);
   });
-  renderCountries(regions);
+  filteredCountry = regions;
+  renderCountries(filteredCountry);
+  saveToLocalStorage();
 }

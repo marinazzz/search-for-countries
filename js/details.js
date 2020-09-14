@@ -5,13 +5,13 @@ if (countryID) {
     if (countryData.borders.length > 0) {
       getNeighbouringCountries(countryData.borders).then((countries) => {
         renderCountryDetails(countryData, countries);
-      });
-      // implement error handling
+      })
+      .catch(showError);
     } else {
       renderCountryDetails(countryData, null);
     }
-  });
-  // implement error handling
+  }).catch(showError);
+  localStorage.clear();
 }
 
 function formQueryParamFromArray(countryCodeArr) {
