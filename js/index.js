@@ -53,17 +53,17 @@ getCountries()
   .catch(showError);
 
 function saveToLocalStorage() {
-let countriesNodes = [...document.querySelectorAll(".card")];
-    countriesNodes.forEach((cardNode) => {
-      cardNode.addEventListener("click", (event) => {
-        event.preventDefault();
-        localStorage.setItem(
-          "countryID",
-          cardNode.dataset.countryCode
-        );
-        window.location.assign("details.html");
-      });
+  let countriesNodes = [...document.querySelectorAll(".card")];
+  countriesNodes.forEach((cardNode) => {
+    cardNode.addEventListener("click", (event) => {
+      event.preventDefault();
+      localStorage.setItem(
+        "countryID",
+        cardNode.dataset.countryCode
+      );
+      window.location.assign("details.html");
     });
+  });
 }
 const debounce = (func, delay) => {
   let inDebounce;
@@ -103,3 +103,9 @@ function filterByRegion(name) {
   renderCountries(filteredCountry);
   saveToLocalStorage();
 }
+
+const spinnerWrapper = document.querySelector('.spinner-wrapper');
+
+window.addEventListener('load', () => {
+  spinnerWrapper.parentElement.removeChild(spinnerWrapper);
+});
