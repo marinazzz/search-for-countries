@@ -6,12 +6,11 @@ if (countryID) {
       getNeighbouringCountries(countryData.borders).then((countries) => {
         renderCountryDetails(countryData, countries);
       })
-      .catch(showError);
+        .catch(showError);
     } else {
       renderCountryDetails(countryData, null);
     }
   }).catch(showError);
-  localStorage.clear();
 }
 
 function formQueryParamFromArray(countryCodeArr) {
@@ -26,7 +25,6 @@ async function getCountryDetails(id) {
   const response = await fetch(`https://restcountries.eu/rest/v2/alpha/${id}`);
   return response.json();
 }
-// recieves an array of country iso 3 letter codes as an argument
 async function getNeighbouringCountries(countryIds) {
   const response = await fetch(
     `https://restcountries.eu/rest/v2/alpha?codes=${formQueryParamFromArray(
@@ -92,14 +90,14 @@ function renderCountryDetails(countryData, neighbouringCountries) {
           <div class="card__info-details">
              <dt>Currencies:</dt>
              <dd>${countryData.currencies.map(
-                 (currency) => currency.name
-               )}</dd>
+    (currency) => currency.name
+  )}</dd>
           </div>
           <div class="card__info-details">
               <dt>Language:</dt>
               <dd>${countryData.languages.map(
-               (language) => language.name
-              )}</dd>
+    (language) => language.name
+  )}</dd>
            </div>
         </dl>
       </div>

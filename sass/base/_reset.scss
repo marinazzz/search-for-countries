@@ -1,63 +1,69 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    background: $very-light-gray;
+	margin: 0;
+	padding: 0;
+	background: $very-light-gray;
 }
 
 main {
-    overflow: hidden;
-    padding-bottom: 1rem;
+	overflow: hidden;
+	min-height: 100%;
+	padding-bottom: 1rem;
 }
 
 a {
-    color: $very-dark-blue-text;
-    text-decoration: none;
+	color: $very-dark-blue-text;
+	text-decoration: none;
 }
 
 p {
-    margin: 0;
+	margin: 0;
 }
 
-img, li {
-    display: block;
+img,
+li {
+	display: block;
 }
 
 ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
 }
 
 button {
-    cursor: pointer;
-    border: none;
-    outline: none;
-    text-decoration: none;
-    font-family: inherit;
-    background: white;
-    color: $very-dark-blue-text;
+	cursor: pointer;
+	border: none;
+	outline: none;
+	text-decoration: none;
+	font-family: inherit;
+	background: white;
+	color: $very-dark-blue-text;
 }
 
 input {
-    margin: 0;
-    border: none;
-    font-family: inherit;
+	margin: 0;
+	border: none;
+	font-family: inherit;
 }
 
-dd, dt {
-    display: inline;
+dd,
+dt {
+	display: inline;
 }
 
-dl, dd, dt {
-    margin: 0;
+dl,
+dd,
+dt {
+	margin: 0;
 }
 
-dt, li {
-    font-weight: 700;
+dt,
+li {
+	font-weight: 700;
 }

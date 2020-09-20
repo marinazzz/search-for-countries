@@ -8,7 +8,7 @@ let select = new SlimSelect({
   onChange: (e) => {
     searchCountry();
   },
-  allowDeselect: true
+  allowDeselect: true,
 });
 
 let countriesData = [];
@@ -20,33 +20,6 @@ async function getCountries() {
   return response.json();
 }
 
-function renderCountries(countriesList) {
-  let card = "";
-  countriesList.forEach((country) => {
-    card += `
-          <a href="details.html" class="card" data-country-code="${country.alpha3Code}">
-              <div class="card__image">
-                  <img src="${country.flag}" alt="${country.name} flag" />
-              </div>
-              <div class="card__info">
-                  <h2 class="card__info-heading">${country.name}</h2>
-                  <ul>
-                      <li class="card__info-details">Population:
-                          <span>${country.population}</span>
-                      </li>
-                      <li class="card__info-details">Region:
-                          <span>${country.region}</span>
-                      </li>
-                      <li class="card__info-details">Capital:
-                          <span>${country.capital}</span>
-                      </li>
-                  </ul>
-              </div>
-          </a>`;
-  });
-  document.getElementById("output").innerHTML = card;
-}
-
 getCountries()
   .then((data) => {
     countriesData = data;
@@ -54,6 +27,33 @@ getCountries()
     saveToLocalStorage();
   })
   .catch(showError);
+
+function renderCountries(countriesList) {
+  let card = "";
+  countriesList.forEach((country) => {
+    card += `
+            <a href="details.html" class="card" data-country-code="${country.alpha3Code}">
+                <div class="card__image">
+                    <img src="${country.flag}" alt="${country.name} flag" />
+                </div>
+                <div class="card__info">
+                    <h2 class="card__info-heading">${country.name}</h2>
+                    <ul>
+                        <li class="card__info-details">Population:
+                            <span>${country.population}</span>
+                        </li>
+                        <li class="card__info-details">Region:
+                            <span>${country.region}</span>
+                        </li>
+                        <li class="card__info-details">Capital:
+                            <span>${country.capital}</span>
+                        </li>
+                    </ul>
+                </div>
+            </a>`;
+  });
+  document.getElementById("output").innerHTML = card;
+}
 
 function saveToLocalStorage() {
   let countriesNodes = [...document.querySelectorAll(".card")];
@@ -68,6 +68,7 @@ function saveToLocalStorage() {
     });
   });
 }
+
 const debounce = (func, delay) => {
   let inDebounce;
   return function () {
@@ -84,7 +85,7 @@ search.addEventListener("keyup", debounce(searchCountry, 300));
 function searchCountry() {
   nameFilter = search.value;
   regionFilter = select.data.data.filter(regionName => regionName.selected)[0].value;
-  console.log(nameFilter, regionFilter);
+
   filterCountries(nameFilter, regionFilter);
 }
 
@@ -102,28 +103,7 @@ function filterCountries(nameFilter, regionFilter) {
   saveToLocalStorage();
 }
 
-function filterByName(countryName) {
-  const results = data.filter((value) => {
-    return value.name
-      .toLowerCase()
-      .includes(search.value.toLowerCase());
-  });
-  renderCountries(results);
-  saveToLocalStorage();
-}
-
-let filteredCountry = '';
-function filterByRegion(regionName) {
-  const regions = countriesData.filter((country) => {
-    return country.region.includes(regionName);
-  });
-  filteredCountry = regions;
-  renderCountries(filteredCountry);
-  saveToLocalStorage();
-}
-
 const spinnerWrapper = document.querySelector('.spinner-wrapper');
-
 window.addEventListener('load', () => {
   spinnerWrapper.parentElement.removeChild(spinnerWrapper);
 });
