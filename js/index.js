@@ -1,9 +1,12 @@
+let nameFilter;
+let regionFilter;
+
 let select = new SlimSelect({
   select: "#slim-select",
   showSearch: false,
   placeholder: "Filter by Region",
   onChange: (e) => {
-    filterByRegion(e.value)
+    searchCountry();
   },
   allowDeselect: true
 });
@@ -75,16 +78,31 @@ const debounce = (func, delay) => {
   };
 };
 
-let search = document.getElementById("search");
+const search = document.getElementById("search");
 search.addEventListener("keyup", debounce(searchCountry, 300));
 
 function searchCountry() {
-  filteredCountry ?
-    filterData(filteredCountry) :
-    filterData(countriesData);
+  nameFilter = search.value;
+  regionFilter = select.data.data.filter(regionName => regionName.selected)[0].value;
+  console.log(nameFilter, regionFilter);
+  filterCountries(nameFilter, regionFilter);
 }
 
-function filterData(data) {
+function filterCountries(nameFilter, regionFilter) {
+  const filterResults = countriesData.filter(country => {
+    if (nameFilter && regionFilter) {
+      return country.name.toLowerCase().includes(nameFilter) && country.region.includes(regionFilter);
+    } else if (nameFilter || regionFilter) {
+      return nameFilter ?
+        country.name.toLowerCase().includes(nameFilter) :
+        country.region.includes(regionFilter);
+    }
+  });
+  renderCountries(filterResults);
+  saveToLocalStorage();
+}
+
+function filterByName(countryName) {
   const results = data.filter((value) => {
     return value.name
       .toLowerCase()
@@ -95,9 +113,9 @@ function filterData(data) {
 }
 
 let filteredCountry = '';
-function filterByRegion(name) {
+function filterByRegion(regionName) {
   const regions = countriesData.filter((country) => {
-    return country.region.includes(name);
+    return country.region.includes(regionName);
   });
   filteredCountry = regions;
   renderCountries(filteredCountry);
