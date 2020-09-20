@@ -80,7 +80,7 @@ const debounce = (func, delay) => {
 };
 
 const search = document.getElementById("search");
-search.addEventListener("keyup", debounce(searchCountry, 300));
+search.addEventListener('input', debounce(searchCountry, 300));
 
 function searchCountry() {
   nameFilter = search.value;
