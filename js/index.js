@@ -2,9 +2,9 @@ let nameFilter;
 let regionFilter;
 
 let select = new SlimSelect({
-  select: "#slim-select",
+  select: '#slim-select',
   showSearch: false,
-  placeholder: "Filter by Region",
+  placeholder: 'Filter by Region',
   onChange: (e) => {
     searchCountry();
   },
@@ -14,9 +14,7 @@ let select = new SlimSelect({
 let countriesData = [];
 
 async function getCountries() {
-  const response = await fetch(
-    "https://restcountries.eu/rest/v2/all?fields=name;capital;alpha3Code;flag;population;region"
-  );
+  const response = await fetch('https://restcountries.com/v3.1/all');
   return response.json();
 }
 
@@ -29,15 +27,15 @@ getCountries()
   .catch(showError);
 
 function renderCountries(countriesList) {
-  let card = "";
+  let card = '';
   countriesList.forEach((country) => {
     card += `
-            <a href="details.html" class="card" data-country-code="${country.alpha3Code}">
+            <a href="details.html" class="card" data-country-code="${country.cca2}">
                 <div class="card__image">
-                    <img src="${country.flag}" alt="${country.name} flag" />
+                    <img src="${country.flags.svg}" alt="${country.name.official} flag" />
                 </div>
                 <div class="card__info">
-                    <h2 class="card__info-heading">${country.name}</h2>
+                    <h2 class="card__info-heading">${country.name.official}</h2>
                     <ul>
                         <li class="card__info-details">Population:
                             <span>${country.population}</span>
@@ -52,19 +50,16 @@ function renderCountries(countriesList) {
                 </div>
             </a>`;
   });
-  document.getElementById("output").innerHTML = card;
+  document.getElementById('output').innerHTML = card;
 }
 
 function saveToLocalStorage() {
-  let countriesNodes = [...document.querySelectorAll(".card")];
+  let countriesNodes = [...document.querySelectorAll('.card')];
   countriesNodes.forEach((cardNode) => {
-    cardNode.addEventListener("click", (event) => {
+    cardNode.addEventListener('click', (event) => {
       event.preventDefault();
-      localStorage.setItem(
-        "countryID",
-        cardNode.dataset.countryCode
-      );
-      window.location.assign("details.html");
+      localStorage.setItem('countryID', cardNode.dataset.countryCode);
+      window.location.assign('details.html');
     });
   });
 }
@@ -79,24 +74,28 @@ const debounce = (func, delay) => {
   };
 };
 
-const search = document.getElementById("search");
+const search = document.getElementById('search');
 search.addEventListener('input', debounce(searchCountry, 300));
 
 function searchCountry() {
   nameFilter = search.value;
-  regionFilter = select.data.data.filter(regionName => regionName.selected)[0].value;
+  regionFilter = select.data.data.filter((regionName) => regionName.selected)[0]
+    .value;
 
   filterCountries(nameFilter, regionFilter);
 }
 
 function filterCountries(nameFilter, regionFilter) {
-  const filterResults = countriesData.filter(country => {
+  const filterResults = countriesData.filter((country) => {
     if (nameFilter && regionFilter) {
-      return country.name.toLowerCase().includes(nameFilter) && country.region.includes(regionFilter);
+      return (
+        country.name.official.toLowerCase().includes(nameFilter) &&
+        country.region.includes(regionFilter)
+      );
     } else if (nameFilter || regionFilter) {
-      return nameFilter ?
-        country.name.toLowerCase().includes(nameFilter) :
-        country.region.includes(regionFilter);
+      return nameFilter
+        ? country.name.official.toLowerCase().includes(nameFilter)
+        : country.region.includes(regionFilter);
     }
   });
   renderCountries(filterResults);

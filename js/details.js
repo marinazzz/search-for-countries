@@ -1,108 +1,106 @@
-const countryID = localStorage.getItem("countryID");
+const countryID = localStorage.getItem('countryID');
 
 if (countryID) {
-  getCountryDetails(countryID).then((countryData) => {
-    if (countryData.borders.length > 0) {
-      getNeighbouringCountries(countryData.borders).then((countries) => {
-        renderCountryDetails(countryData, countries);
-      })
-        .catch(showError);
-    } else {
-      renderCountryDetails(countryData, null);
-    }
-  }).catch(showError);
+  getCountryDetails(countryID)
+    .then((countryData) => {
+      // if (countryData.borders.length > 0) {
+      //   getNeighbouringCountries(countryData.borders)
+      //     .then((countries) => {
+      //       renderCountryDetails(countryData, countries);
+      //     })
+      //     .catch(showError);
+      // } else {
+      //   renderCountryDetails(countryData, null);
+      // }
+      console.log(countryData);
+
+      renderCountryDetails(countryData);
+    })
+    .catch(showError);
 }
 
 function formQueryParamFromArray(countryCodeArr) {
-  let queryStringArr = "";
+  let queryStringArr = '';
   countryCodeArr.forEach((countryCode) => {
-    queryStringArr += countryCode + ";";
+    queryStringArr += countryCode + ';';
   });
   return queryStringArr;
 }
 
 async function getCountryDetails(id) {
-  const response = await fetch(`https://restcountries.eu/rest/v2/alpha/${id}`);
+  const response = await fetch(`https://restcountries.com/v3.1/alpha/${id}`);
   return response.json();
 }
 async function getNeighbouringCountries(countryIds) {
   const response = await fetch(
-    `https://restcountries.eu/rest/v2/alpha?codes=${formQueryParamFromArray(
+    `https://restcountries.com/v3.1/alpha?codes=${formQueryParamFromArray(
       countryIds
     )}`
   );
   return response.json();
 }
 
-function renderCountryDetails(countryData, neighbouringCountries) {
-  let grid = "";
-  let neighouringCountriesList = "";
-  if (neighbouringCountries !== null) {
-    neighouringCountriesList = `
-      <div class="pad-md-top">
-        <div class="card__info-details">
-         <h3>Border Countries:</h3>
-         <div class="links-row">`;
-    neighbouringCountries.forEach((country) => {
-      neighouringCountriesList += `
-      <span class="main-btn">${country.name}</span>
-      `;
-    });
-    neighouringCountriesList += `
-          </div>
-        </div>
-      </div>`;
-  }
+function renderCountryDetails(countryData) {
+  let grid = '';
+  // let neighouringCountriesList = '';
+  // if (neighbouringCountries !== null) {
+  //   neighouringCountriesList = `
+  //     <div class="pad-md-top">
+  //       <div class="card__info-details">
+  //        <h3>Border Countries:</h3>
+  //        <div class="links-row">`;
+  //   neighbouringCountries.forEach((country) => {
+  //     neighouringCountriesList += `
+  //     <span class="main-btn">${country.name.official}</span>
+  //     `;
+  //   });
+  //   neighouringCountriesList += `
+  //         </div>
+  //       </div>
+  //     </div>`;
+  // }
   grid += `
     <div class="pad-md-bot">
-     <img class="card__flag" src="${countryData.flag}" alt="${countryData.name} flag" />
+     <img class="card__flag" src="${countryData.map(
+       (flag) => flag.flags.svg
+     )}" alt="${countryData.map((name) => name.name.official)} flag" />
     </div>
     <div>
-      <h2 class="pad-md-bot">${countryData.name}</h2>
+      <h2 class="pad-md-bot">${countryData.map((name) => name.name.official)}
+      </h2>
       <div class="grid grid--xl-gap pad-md-bot pad-md-top">
-        <dl class="pad-md-bot">
-          <div class="card__info-details">
-             <dt>Native Name:</dt>
-             <dd>${countryData.nativeName}</dd>
-          </div>
-          <div class="card__info-details">
-             <dt>Population:</dt>
-             <dd>${countryData.population}</dd>
-          </div>
-          <div class="card__info-details">
-             <dt>Region:</dt>
-             <dd>${countryData.region}</dd>
-          </div>
-          <div class="card__info-details">
-             <dt>Sub Region:</dt>
-             <dd>${countryData.subregion}</dd>
-          </div>
-          <div class="card__info-details">
-             <dt>Capital:</dt>
-             <dd>${countryData.capital}</dd>
-          </div>
-        </dl>
-        <dl>
+      <dl class="pad-md-bot">
+      <div class="card__info-details">
+         <dt>Native Name:</dt>
+         <dd>${countryData.map((name) => name.name.common)}</dd>
+      </div>
+      <div class="card__info-details">
+         <dt>Population:</dt>
+         <dd>${countryData.map((name) => name.population)}</dd>
+      </div>
+      <div class="card__info-details">
+         <dt>Region:</dt>
+         <dd>${countryData.map((name) => name.region)}</dd>
+      </div>
+      <div class="card__info-details">
+         <dt>Sub Region:</dt>
+         <dd>${countryData.map((name) => name.subregion)}</dd>
+      </div>
+      <div class="card__info-details">
+         <dt>Capital:</dt>
+         <dd>${countryData.map((name) => name.capital[0])}</dd>
+      </div>
+    </dl>
+    </div>
           <div class="card__info-details">
              <dt>Top Level Domain:</dt>
-             <dd>${countryData.topLevelDomain}</dd>
+             <dd>${countryData.map((name) => name.tld[0])}</dd>
            </div>
-          <div class="card__info-details">
-             <dt>Currencies:</dt>
-             <dd>${countryData.currencies.map(
-    (currency) => currency.name
-  )}</dd>
-          </div>
-          <div class="card__info-details">
-              <dt>Language:</dt>
-              <dd>${countryData.languages.map(
-    (language) => language.name
-  )}</dd>
-           </div>
-        </dl>
-      </div>
-      ${neighouringCountriesList}
+           <div class="card__info-details">
+           <dt>Timezone:</dt>
+           <dd>${countryData.map((name) => name.timezones[0])}</dd>
+        </div>
     </div>
   `;
-  document.getElementById("countryDetails").innerHTML = grid;
+  document.getElementById('countryDetails').innerHTML = grid;
 }
